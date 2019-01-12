@@ -4,7 +4,7 @@
 package test_engine;
 
 public class App {
-    public String getGreeting() {
+    String getGreeting() {
         return "Hello world.";
     }
 
