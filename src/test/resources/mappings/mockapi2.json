@@ -1,0 +1,13 @@
+{
+  "request": {
+    "method": "GET",
+    "url": "/api/users/23"
+  },
+  "response": {
+    "status": 403,
+    "jsonBody": {},
+    "headers": {
+      "Content-Type": "text/plain"
+    }
+  }
+}
