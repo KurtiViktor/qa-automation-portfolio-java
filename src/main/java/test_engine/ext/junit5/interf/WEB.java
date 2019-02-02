@@ -1,4 +1,4 @@
-package test_engine.ext.junit5;
+package test_engine.ext.junit5.interf;
 
 import org.junit.jupiter.api.Tag;
 import org.junit.jupiter.api.parallel.Execution;
@@ -10,9 +10,9 @@ import java.lang.annotation.Target;
 
 import static org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT;
 
-@Tag("api")
+@Tag("web")
 @Execution(CONCURRENT)
 @Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
-public @interface API {
+public @interface WEB {
 }
