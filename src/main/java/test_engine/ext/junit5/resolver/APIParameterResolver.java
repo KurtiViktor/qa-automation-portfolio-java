@@ -1,4 +1,4 @@
-package test_engine.ext.junit5;
+package test_engine.ext.junit5.resolver;
 
 import org.aeonbits.owner.ConfigCache;
 import org.junit.jupiter.api.extension.ExtensionContext;
@@ -21,7 +21,7 @@ public class APIParameterResolver implements ParameterResolver {
     public Object resolveParameter(ParameterContext parameterContext, ExtensionContext extensionContext)
             throws ParameterResolutionException {
         TestEngineCfg cfg = ConfigCache.getOrCreate(TestEngineCfg.class);
-        return RetrofitAdapter.build(cfg.baseUrl());
+        return RetrofitAdapter.build(cfg.apiBaseUrl());
     }
 
 }
