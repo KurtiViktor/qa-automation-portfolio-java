@@ -1,4 +1,4 @@
-package test_engine.ext.junit5;
+package test_engine.ext.junit5.provider;
 
 import com.google.gson.Gson;
 import com.google.gson.stream.JsonReader;
@@ -9,6 +9,7 @@ import org.junit.jupiter.params.provider.ArgumentsProvider;
 import org.junit.jupiter.params.support.AnnotationConsumer;
 import org.junit.platform.commons.util.Preconditions;
 import test_engine.api.testdata.model.TestData;
+import test_engine.ext.junit5.interf.JsonFileSource;
 
 import java.io.IOException;
 import java.io.InputStream;
