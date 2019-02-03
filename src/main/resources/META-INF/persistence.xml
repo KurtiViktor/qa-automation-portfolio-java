@@ -13,11 +13,10 @@
             <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
             <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:V:/Автоматизация тестирвоания/code/java/portfolio/test_engine/src/test/resources/dbtest.db" />
             <property name="hibernate.dialect" value="test_engine.db.jpa.hibernate.SQLiteDialect" />
-            <!--<property name="hibernate.show_sql" value="true" />-->
-            <!--<property name="hibernate.format_sql" value="true" />-->
+            <property name="hibernate.show_sql" value="true" />
+            <property name="hibernate.format_sql" value="true" />
             <property name="hibernate.connection.charSet" value="UTF-8" />
             <property name="hibernate.hbm2ddl.auto" value="update" />
-            <!--<property name="jpa.Log" value="SQL=TRACE"/>-->
         </properties>
     </persistence-unit>
 </persistence>

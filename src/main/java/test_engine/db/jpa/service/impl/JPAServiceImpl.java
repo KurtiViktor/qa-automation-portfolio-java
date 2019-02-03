@@ -21,7 +21,7 @@ public class JPAServiceImpl implements JPAService {
     public <T> T findById(EntityManager entityManager, Class<T> modelCls, Long id) {
         T model = entityManager.find(modelCls, id);
         log.info("find existing Entity: " + model);
-        log.info("LOG TESTING WITH LOMBOK " + log.getName());
+        log.info("LOG TESTING WITH LOMBOK ");
         return model;
     }
 

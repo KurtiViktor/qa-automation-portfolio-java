@@ -22,7 +22,7 @@ class DBTests {
 
     @Test
     void testFindAll(JPAServiceImpl jpa) {
-        log.info("LOG TESTING WITH LOMBOK " + log.getName());
+        log.info("LOG TESTING WITH LOMBOK ");
         List<Provider> providers = jpa.findAll(entityManager, Provider.class, "Provider.findAll");
         assertEquals(providers.size(), 5, "FindAll check");
     }
