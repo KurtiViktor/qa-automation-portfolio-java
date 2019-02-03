@@ -17,17 +17,30 @@ import java.io.IOException;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Юнит-тесты для проверки api-функциональности.
+ */
 @API
 @Slf4j
 @DisplayName("Юнит-тесты для проверки api-функциональности")
 class APITests {
 
+    /**
+     * Фикстура перед всеми api тестами.
+     */
     @BeforeAll
     @DisplayName("Фикстура перед всеми api тестами")
     static void setUp() {
         log.info("Фикстура перед всеми api тестами " + Thread.currentThread().getName());
     }
 
+    /**
+     * Тест запроса одиночного пользователя.
+     *
+     * @param td  тестовые данные
+     * @param api класс с запросами апи
+     * @throws IOException the io exception
+     */
     @ParameterizedTest(name = "Запрос одиночного пользователя")
     @JsonFileSource(filePath = "/testdata/api1.json")
     void singleUserApiTest(TestData td, APIRequests api) throws IOException {
@@ -40,6 +53,13 @@ class APITests {
         );
     }
 
+    /**
+     * Тест битого запроса одиночного пользователя.
+     *
+     * @param td  тестовые данные
+     * @param api класс с запросами апи
+     * @throws IOException the io exception
+     */
     @ParameterizedTest(name = "Битый запрос одиночного пользователя")
     @JsonFileSource(filePath = "/testdata/api2.json")
     void singleUserNotFoundApiTest(TestData td, APIRequests api) throws IOException {
@@ -52,6 +72,14 @@ class APITests {
         );
     }
 
+    /**
+     * Шаг установки текста {text} на поиск.
+     *
+     * @param id  тестовые данные
+     * @param api класс с запросами апи
+     * @return the response
+     * @throws IOException the io exception
+     */
     @Step("Задать текст {text} на поиск")
     Response<UserData> sendRequest(String id, APIRequests api) throws IOException {
         log.info("запрос одиночного пользователя " + Thread.currentThread().getName());

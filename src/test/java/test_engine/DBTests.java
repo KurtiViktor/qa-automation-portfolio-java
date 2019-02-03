@@ -1,6 +1,7 @@
 package test_engine;
 
 import lombok.extern.slf4j.Slf4j;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import test_engine.db.jpa.service.impl.JPAServiceImpl;
 import test_engine.db.model.Provider;
@@ -13,13 +14,22 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Юнит-тесты для проверки db-тестов.
+ */
 @DB
 @Slf4j
+@DisplayName("Юнит-тесты для проверки db-тестов")
 class DBTests {
 
     @PersistenceContext(unitName = "engine-test")
     private EntityManager entityManager;
 
+    /**
+     * Тест поиска всех элементов в таблице.
+     *
+     * @param jpa JPA-сервисы, будут инъектированы
+     */
     @Test
     void testFindAll(JPAServiceImpl jpa) {
         log.info("LOG TESTING WITH LOMBOK ");
@@ -27,6 +37,11 @@ class DBTests {
         assertEquals(providers.size(), 5, "FindAll check");
     }
 
+    /**
+     * Тест поиска по id в таблице.
+     *
+     * @param jpa JPA-сервисы, будут инъектированы
+     */
     @Test
     void testFindById(JPAServiceImpl jpa) {
         Provider provider = jpa.findById(entityManager, Provider.class, 1L);
@@ -36,6 +51,11 @@ class DBTests {
         );
     }
 
+    /**
+     * Тест сохранения объекта в таблицу.
+     *
+     * @param jpa JPA-сервисы, будут инъектированы
+     */
     @Test
     void testSave(JPAServiceImpl jpa) {
         Warehouse savedWarehouse = new Warehouse();
@@ -47,6 +67,11 @@ class DBTests {
         jpa.delete(entityManager, providerFromDb);
     }
 
+    /**
+     * Тест удаления объекта из таблицы.
+     *
+     * @param jpa JPA-сервисы, будут инъектированы
+     */
     @Test
     void testDelete(JPAServiceImpl jpa) {
         Warehouse deletedWarehouse = new Warehouse();

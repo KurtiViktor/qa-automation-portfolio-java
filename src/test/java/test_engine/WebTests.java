@@ -23,6 +23,9 @@ import static org.assertj.core.api.Assertions.assertThat;
 @DisplayName("Юнит-тесты для проверки web-функциональности")
 class WebTests {
 
+    /**
+     * Фикстура перед всеми web тестами.
+     */
     @BeforeAll
     @DisplayName("Фикстура перед всеми web тестами")
     static void setUp() {
@@ -32,6 +35,7 @@ class WebTests {
     }
 
     /**
+     * Задача по поиску температуры на сегодня.
      * В поиске янедкса (https://www.yandex.ru/) при вводе ключевого слова "погода" всплывает окно вариантов выбора.
      * Первый из них -- это вариант с указанием текущей погоды, например "погода 0 С".
      * Задача вывести на экран значение погоды в градусах. Язык реализации Java.
@@ -48,12 +52,22 @@ class WebTests {
                 .matches("[−+]\\d °C");
     }
 
+    /**
+     * Шаг установки текста {text} на поиск.
+     *
+     * @param text the text
+     */
     @Step("Задать текст {text} на поиск")
     void setTextToSearch(String text) {
         $(By.xpath("//*[@class='input__box']/input"))
                 .setValue(text);
     }
 
+    /**
+     * Шаг получения текста первого быстрого ответа из popup.
+     *
+     * @return текст всплывающего окна
+     */
     @Step("Получить текст первого быстрого ответа из popup")
     String getPopupQuickAnswerText() {
         ElementsCollection suggestions = $$(By.xpath("//div[@class='popup__content']//li"));

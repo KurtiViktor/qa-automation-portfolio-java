@@ -5,6 +5,9 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 
+/**
+ * Класс orm для сущности Warehouse.
+ */
 @Entity
 @Table(name = "warehouses")
 @Data

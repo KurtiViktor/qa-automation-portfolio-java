@@ -11,7 +11,13 @@ import org.hibernate.dialect.function.StandardSQLFunction;
 import org.hibernate.dialect.function.VarArgsSQLFunction;
 import org.hibernate.type.StandardBasicTypes;
 
+/**
+ * Диалект SQL для JPA\Hibernate и Sqlite.
+ */
 public class SQLiteDialect extends Dialect {
+    /**
+     * Instantiates a new Sq lite dialect.
+     */
     public SQLiteDialect() {
         registerColumnType(Types.BIT, "boolean");
         registerColumnType(Types.TINYINT, "tinyint");
@@ -36,10 +42,7 @@ public class SQLiteDialect extends Dialect {
         registerColumnType(Types.CLOB, "clob");
         registerColumnType(Types.BOOLEAN, "boolean");
 
-        //registerFunction( "abs", new StandardSQLFunction("abs") );
         registerFunction( "concat", new VarArgsSQLFunction(StandardBasicTypes.STRING, "", "||", "") );
-        //registerFunction( "length", new StandardSQLFunction("length", StandardBasicTypes.LONG) );
-        //registerFunction( "lower", new StandardSQLFunction("lower") );
         registerFunction( "mod", new SQLFunctionTemplate(StandardBasicTypes.INTEGER, "?1 % ?2" ) );
         registerFunction( "quote", new StandardSQLFunction("quote", StandardBasicTypes.STRING) );
         registerFunction( "random", new NoArgSQLFunction("random", StandardBasicTypes.INTEGER) );
@@ -75,37 +78,40 @@ public class SQLiteDialect extends Dialect {
                 return new SQLFunctionTemplate(StandardBasicTypes.STRING, "rtrim(?1, ?2)");
             }
         } );
-        //registerFunction( "upper", new StandardSQLFunction("upper") );
     }
 
+    /**
+     * Supports identity columns boolean.
+     *
+     * @return the boolean
+     */
     public boolean supportsIdentityColumns() {
         return true;
     }
 
-  /*
-  public boolean supportsInsertSelectIdentity() {
-    return true; // As specify in NHibernate dialect
-  }
-  */
-
+    /**
+     * Has data type in identity column boolean.
+     *
+     * @return the boolean
+     */
     public boolean hasDataTypeInIdentityColumn() {
         return false; // As specify in NHibernate dialect
     }
 
-  /*
-  public String appendIdentitySelectToInsert(String insertString) {
-    return new StringBuffer(insertString.length()+30). // As specify in NHibernate dialect
-      append(insertString).
-      append("; ").append(getIdentitySelectString()).
-      toString();
-  }
-  */
-
+    /**
+     * Gets identity column string.
+     *
+     * @return the identity column string
+     */
     public String getIdentityColumnString() {
-        // return "integer primary key autoincrement";
         return "integer";
     }
 
+    /**
+     * Gets identity select string.
+     *
+     * @return the identity select string
+     */
     public String getIdentitySelectString() {
         return "select last_insert_rowid()";
     }
@@ -125,16 +131,31 @@ public class SQLiteDialect extends Dialect {
                 toString();
     }
 
+    /**
+     * Supports temporary tables boolean.
+     *
+     * @return the boolean
+     */
     public boolean supportsTemporaryTables() {
         return true;
     }
 
+    /**
+     * Gets create temporary table string.
+     *
+     * @return the create temporary table string
+     */
     public String getCreateTemporaryTableString() {
         return "create temporary table if not exists";
     }
 
+    /**
+     * Drop temporary table after use boolean.
+     *
+     * @return the boolean
+     */
     public boolean dropTemporaryTableAfterUse() {
-        return true; // TODO Validate
+        return true;
     }
 
     public boolean supportsCurrentTimestampSelection() {
@@ -194,12 +215,6 @@ public class SQLiteDialect extends Dialect {
     public boolean supportsCascadeDelete() {
         return true;
     }
-
-  /* not case insensitive for unicode characters by default (ICU extension needed)
-  public boolean supportsCaseInsensitiveLike() {
-    return true;
-  }
-  */
 
     public boolean supportsTupleDistinctCounts() {
         return false;

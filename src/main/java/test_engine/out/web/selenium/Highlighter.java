@@ -8,11 +8,16 @@ import org.openqa.selenium.support.events.AbstractWebDriverEventListener;
 import static com.codeborne.selenide.Selenide.executeJavaScript;
 import static com.codeborne.selenide.Selenide.sleep;
 
+/**
+ * Класс для подстветки выполнения web-тестов на локальной машине через selenide.
+ */
 public class Highlighter extends AbstractWebDriverEventListener {
+    
+    private static final String BEFORE_CLICK_COLOR = "orange";
 
     @Override
     public void beforeClickOn(WebElement element, WebDriver driver) {
-        highlight(element, "orange");
+        highlight(element, BEFORE_CLICK_COLOR);
     }
 
     @Override
@@ -27,14 +32,10 @@ public class Highlighter extends AbstractWebDriverEventListener {
 
     @Override
     public void beforeChangeValueOf(WebElement element, WebDriver driver, CharSequence[] keysToSend) {
-        highlight(element, "orange");
+        highlight(element, BEFORE_CLICK_COLOR);
     }
 
-    public static <T extends WebElement> T highlight(T element) {
-        return highlight(element, "orange");
-    }
-
-    private static <T extends WebElement> T highlight(T element, final String color) {
+    private static <T extends WebElement> void highlight(T element, final String color) {
         if (element != null && element.getAttribute("__selenideHighlighting") == null) {
             for (int i = 1; i < 4; i++) {
                 transform(element, color, i);
@@ -45,7 +46,6 @@ public class Highlighter extends AbstractWebDriverEventListener {
                 sleep(50);
             }
         }
-        return element;
     }
 
     private static void transform(WebElement element, String color, int i) {

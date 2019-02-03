@@ -6,22 +6,23 @@ import test_engine.db.jpa.service.JPAService;
 import javax.persistence.EntityManager;
 import java.util.List;
 
+/**
+ * Класс-имплементация JPA сервисов.
+ */
 @Slf4j
 public class JPAServiceImpl implements JPAService {
 
     @Override
     public <T> List<T> findAll(EntityManager entityManager, Class<T> model, String queryName) {
-        List<T> modelList = entityManager
+        return entityManager
                 .createNamedQuery(queryName, model)
                 .getResultList();
-        return modelList;
     }
 
     @Override
     public <T> T findById(EntityManager entityManager, Class<T> modelCls, Long id) {
         T model = entityManager.find(modelCls, id);
         log.info("find existing Entity: " + model);
-        log.info("LOG TESTING WITH LOMBOK ");
         return model;
     }
 

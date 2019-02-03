@@ -5,6 +5,9 @@ import lombok.EqualsAndHashCode;
 
 import javax.persistence.*;
 
+/**
+ * Класс orm для сущности Item.
+ */
 @Entity
 @Table(name = "items")
 @Data
@@ -20,6 +23,6 @@ public class Item {
 
     @ManyToOne
     @JoinColumn(name = "warehouse_id")
-    private Warehouse warehouse_id;
+    private Warehouse warehouseId;
 
 }

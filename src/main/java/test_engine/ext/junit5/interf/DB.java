@@ -13,6 +13,9 @@ import java.lang.annotation.Target;
 
 import static org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT;
 
+/**
+ * Custom аннотация для Junit 5 для работы с бд.
+ */
 @Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 @ExtendWith(JpaUnit.class)

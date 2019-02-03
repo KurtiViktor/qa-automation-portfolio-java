@@ -10,6 +10,9 @@ import java.lang.annotation.Target;
 
 import static org.junit.jupiter.api.parallel.ExecutionMode.CONCURRENT;
 
+/**
+ * Custom аннотация для Junit 5 для работы с web.
+ */
 @Tag("web")
 @Execution(CONCURRENT)
 @Target({ElementType.ANNOTATION_TYPE, ElementType.TYPE})

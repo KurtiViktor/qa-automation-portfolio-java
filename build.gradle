@@ -114,3 +114,9 @@ task copyAllureCategories(type: Copy) {
     from "src/test/resources/categories.json"
     into "$buildDir/allure-results"
 }
+
+javadoc {
+    options.charSet = 'UTF-8'
+    options.encoding = 'UTF-8'
+    options.docEncoding = 'UTF-8'
+}
