@@ -14,36 +14,4 @@ public interface TestEngineCfg extends Config {
      */
     @DefaultValue("https://reqres.in/")
     String apiBaseUrl();
-
-    /**
-     * Jdbc driver string.
-     *
-     * @return the string
-     */
-    @DefaultValue("org.sqlite.JDBC")
-    String jdbcDriver();
-
-    /**
-     * Jdbc url string.
-     *
-     * @return the string
-     */
-    String jdbcUrl();
-
-    /**
-     * Jdbc name string.
-     *
-     * @return the string
-     */
-    @DefaultValue("root")
-    String jdbcName();
-
-    /**
-     * Jdbc password string.
-     *
-     * @return the string
-     */
-    @DefaultValue("root")
-    String jdbcPassword();
-
 }

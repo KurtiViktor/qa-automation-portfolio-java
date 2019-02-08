@@ -19,9 +19,11 @@
 
 # 3. Как работать с проектом
     1. Скачать целиком код проекта.
-    2. Установить параметры.
+    2. Установить параметры запуска:
+        2.1 concurrentExec -- true/false -- запускать ли тесты параллельно.
+        2.2 tags -- api, web, db, ext -- теги для запуска через запятую, по умолчанию все.   
     3. Выполнить для запуска тестов:
-        > ./gradlew test
+        > ./gradlew test -Ptags=your_value -PconcurentExec=your_value
     4. Выполнить для генерации аллюр отчета:
         > ./gradlew copyAllureCategories allureReport
     5. Выполнить для генерации javadoc проекта:

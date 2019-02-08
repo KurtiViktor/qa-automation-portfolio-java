@@ -60,7 +60,7 @@ dependencies {
     implementation 'org.hibernate:hibernate-entitymanager:5.4.+'
 
     // dependency injection
-//    implementation 'com.google.inject:guice:4.2.2'
+    implementation 'com.google.inject:guice:4.2.2'
     
     // junit 5
     implementation 'org.junit.jupiter:junit-jupiter-api:5.+'
@@ -89,9 +89,10 @@ dependencies {
 }
 
 test {
-    systemProperty 'junit.jupiter.execution.parallel.enabled', false
+    systemProperty 'jdbc.url', project.findProperty('jdbcUrl') ?: "jdbc:sqlite:$projectDir/src/test/resources/dbtest.db"
+    systemProperty 'junit.jupiter.execution.parallel.enabled', project.findProperty('concurrentExec') ?: false
     useJUnitPlatform {
-        includeTags /*'api', 'web', */'db'/*, 'ext'*/
+        includeTags project.findProperty('tags') ?: 'api, web, db, ext'
     }
 }
 

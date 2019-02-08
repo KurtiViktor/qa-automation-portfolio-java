@@ -10,6 +10,7 @@ import test_engine.ext.junit5.interf.DB;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.PersistenceProperty;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,7 +23,11 @@ import static org.junit.jupiter.api.Assertions.*;
 @DisplayName("Юнит-тесты для проверки db-тестов")
 class DBTests {
 
-    @PersistenceContext(unitName = "engine-test")
+    @PersistenceContext(
+            unitName = "engine-test",
+            properties = {
+                    @PersistenceProperty(name = "javax.persistence.jdbc.url", value = "${jdbc.url}")
+            })
     private EntityManager entityManager;
 
     /**

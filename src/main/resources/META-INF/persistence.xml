@@ -11,7 +11,7 @@
         <class>test_engine.db.model.Warehouse</class>
         <properties>
             <property name="javax.persistence.jdbc.driver" value="org.sqlite.JDBC" />
-            <property name="javax.persistence.jdbc.url" value="jdbc:sqlite:V:/Автоматизация тестирвоания/code/java/portfolio/test_engine/src/test/resources/dbtest.db" />
+            <property name="javax.persistence.jdbc.url" value="SET YOUR JDBC.URL" />
             <property name="hibernate.dialect" value="test_engine.db.jpa.hibernate.SQLiteDialect" />
             <property name="hibernate.show_sql" value="true" />
             <property name="hibernate.format_sql" value="true" />
