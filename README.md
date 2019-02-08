@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/KurtiViktor/qa_portfolio-java-test_engine.svg?branch=master)](https://travis-ci.org/KurtiViktor/qa_portfolio-java-test_engine)
+
 # 1. Краткое описание
     Технологическое демо по автоматизации тестирования.
     В демо предлагается автоматизация тестирования графического интерфейса, api и базы данных приложения.
