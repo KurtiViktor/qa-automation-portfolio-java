@@ -10,6 +10,7 @@ plugins {
     id 'java'
     id 'io.qameta.allure' version '2.5'
     id 'io.franzbecker.gradle-lombok' version '1.14'
+    id 'jacoco'
 }
 
 sourceCompatibility = 1.8
@@ -114,6 +115,13 @@ lombok {
 task copyAllureCategories(type: Copy) {
     from "src/test/resources/categories.json"
     into "$buildDir/allure-results"
+}
+
+jacocoTestReport {
+    reports {
+        xml.enabled true
+        html.enabled false
+    }
 }
 
 javadoc {
