@@ -93,7 +93,7 @@ test {
     systemProperty 'jdbc.url', project.findProperty('jdbcUrl') ?: "jdbc:sqlite:$projectDir/src/test/resources/dbtest.db"
     systemProperty 'junit.jupiter.execution.parallel.enabled', project.findProperty('concurrentExec') ?: false
     useJUnitPlatform {
-        includeTags project.findProperty('tags') ?: 'api, web, db, ext'
+        includeTags project.findProperty('tags') ?: 'api', 'web', 'db', 'ext'
     }
 }
 

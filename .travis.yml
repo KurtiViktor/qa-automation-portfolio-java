@@ -1,0 +1,29 @@
+language: java
+
+jdk:
+  - oraclejdk8
+
+before_script:
+  - chmod +x gradlew
+
+script:
+  - ./gradlew clean javadoc
+  - ./gradlew test
+  - ./gradlew copyAllureCategories allureReport
+  - ./gradlew jacocoTestReport
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash)
+
+# Improve Build Speed https://dzone.com/articles/travis-ci-tutorial-java-projects
+cache:
+  directories:
+    - $HOME/.m2
+
+# Notifications https://docs.travis-ci.com/user/notifications/
+notifications:
+  email:
+    recipients:
+      - aplikat@gmail.com
+    on_success: always # default: change
+    on_failure: always # default: always
