@@ -9,10 +9,10 @@ before_script:
   - chmod +x gradlew
 
 script:
-  - ./gradlew clean javadoc
-  - ./gradlew test -Pheadless="true"
-  - ./gradlew copyAllureCategories allureReport
-  - ./gradlew jacocoTestReport
+  - ./gradlew --daemon clean javadoc
+  - ./gradlew --daemon test -Pheadless="true"
+  - ./gradlew --daemon copyAllureCategories allureReport
+  - ./gradlew --daemon jacocoTestReport
 
 after_success:
   - bash <(curl -s https://codecov.io/bash)
