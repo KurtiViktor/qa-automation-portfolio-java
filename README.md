@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/KurtiViktor/qa_portfolio-java-test_engine.svg?branch=master)](https://travis-ci.org/KurtiViktor/qa_portfolio-java-test_engine)
+[![codecov](https://codecov.io/gh/KurtiViktor/qa_portfolio-java-test_engine/branch/master/graph/badge.svg)](https://codecov.io/gh/KurtiViktor/qa_portfolio-java-test_engine)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 # 1. Краткое описание
     Технологическое демо по автоматизации тестирования.
