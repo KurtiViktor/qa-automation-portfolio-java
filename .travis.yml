@@ -7,6 +7,7 @@ install: true
 
 before_script:
   - chmod +x gradlew
+  - touch ~/.gradle/gradle.properties && echo "org.gradle.daemon=true" >> ~/.gradle/gradle.properties
 
 script:
   - ./gradlew --daemon clean javadoc
