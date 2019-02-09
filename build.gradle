@@ -92,8 +92,29 @@ dependencies {
 test {
     systemProperty 'jdbc.url', project.findProperty('jdbcUrl') ?: "jdbc:sqlite:$projectDir/src/test/resources/dbtest.db"
     systemProperty 'junit.jupiter.execution.parallel.enabled', project.findProperty('concurrentExec') ?: false
+    systemProperty 'selenide.headless', project.findProperty('headless') ?: false
     useJUnitPlatform {
-        includeTags project.findProperty('tags') ?: 'api', 'web', 'db', 'ext'
+        String tags = project.findProperty('tags')
+        switch (tags) {
+            case 'api':
+                includeTags 'api'
+                excludeTags 'web', 'db', 'ext'
+                break
+            case 'web':
+                includeTags 'web'
+                excludeTags 'api', 'db', 'ext'
+                break
+            case 'db':
+                includeTags 'db'
+                excludeTags 'api', 'web', 'ext'
+                break
+            case 'ext':
+                includeTags 'ext'
+                excludeTags 'api', 'web', 'db'
+                break
+            default:
+                includeTags 'api', 'web', 'db', 'ext'
+        }
     }
 }
 

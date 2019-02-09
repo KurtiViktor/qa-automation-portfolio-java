@@ -10,7 +10,7 @@ before_script:
 
 script:
   - ./gradlew clean javadoc
-  - ./gradlew test
+  - ./gradlew test -Pheadless="true"
   - ./gradlew copyAllureCategories allureReport
   - ./gradlew jacocoTestReport
 

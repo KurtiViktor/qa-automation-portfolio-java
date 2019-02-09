@@ -82,9 +82,9 @@ class DBTests {
         Warehouse deletedWarehouse = new Warehouse();
         deletedWarehouse.setId(-7L);
         deletedWarehouse.setAddress("deleteTestName");
-        assertThrows(
-                javax.persistence.NoResultException.class,
-                () -> jpa.delete(entityManager, deletedWarehouse)
+        jpa.delete(entityManager, deletedWarehouse);
+        assertNull(
+                jpa.findById(entityManager, Warehouse.class, deletedWarehouse.getId())
         );
     }
 

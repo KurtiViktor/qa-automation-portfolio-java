@@ -65,10 +65,16 @@ class APITests {
     void singleUserNotFoundApiTest(TestData td, APIRequests api) throws IOException {
         Response<UserData> response = sendRequest(td.getUser_id(), api);
         UserData userData = response.body();
-        assertNotNull(userData, "Сервер не ответил или произошла ошибка автотестов " + response.code());
-        assertAll("response check",
-                () -> assertEquals(response.code(), td.getResponse_status()),
-                () -> assertEquals(userData.getData(), td.getResponse().getData())
+        assertAll(
+                "response check",
+                () -> assertEquals(
+                        response.code(),
+                        td.getResponse_status()
+                ),
+                () -> assertNull(
+                        userData,
+                        "Сервер не ответил или произошла ошибка автотестов " + response.code()
+                )
         );
     }
 
