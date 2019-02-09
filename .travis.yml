@@ -11,7 +11,7 @@ before_script:
 
 script:
   - ./gradlew --daemon clean javadoc
-  - ./gradlew --daemon test -Pheadless="true"
+  - ./gradlew --daemon test -Ptags="CI"
   - ./gradlew --daemon copyAllureCategories allureReport
   - ./gradlew --daemon jacocoTestReport
 

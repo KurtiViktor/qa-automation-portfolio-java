@@ -112,6 +112,10 @@ test {
                 includeTags 'ext'
                 excludeTags 'api', 'web', 'db'
                 break
+            case 'CI':
+                includeTags 'api', 'db', 'ext'
+                excludeTags 'web'
+                break
             default:
                 includeTags 'api', 'web', 'db', 'ext'
         }
