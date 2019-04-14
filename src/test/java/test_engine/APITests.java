@@ -1,7 +1,8 @@
 package test_engine;
 
-import io.qameta.allure.Step;
+import io.qameta.allure.jsonunit.JsonPatchMatcher;
 import lombok.extern.slf4j.Slf4j;
+import org.assertj.core.api.SoftAssertions;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -15,7 +16,7 @@ import test_engine.ext.junit5.interf.JsonFileSource;
 
 import java.io.IOException;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.assertj.core.api.Assertions.assertThat;
 
 /**
  * Юнит-тесты для проверки api-функциональности.
@@ -46,11 +47,14 @@ class APITests {
     void singleUserApiTest(TestData td, APIRequests api) throws IOException {
         Response<UserData> response = sendRequest(td.getUser_id(), api);
         UserData userData = response.body();
-        assertNotNull(userData, "Сервер не ответил или произошла ошибка автотестов " + response.code());
-        assertAll("response check",
-                () -> assertEquals(response.code(), td.getResponse_status()),
-                () -> assertEquals(userData.getData(), td.getResponse().getData())
-        );
+        assertThat(userData)
+                .as("Сервер не ответил или произошла ошибка автотестов " + response.code())
+                .isNotNull();
+        diff("{af:1, bt:2}", "{b:2, a:1}");
+        SoftAssertions.assertSoftly(softly -> {
+            softly.assertThat(response.code()).isEqualTo(td.getResponse_status());
+            softly.assertThat(userData.getData()).isEqualTo(td.getResponse().getData());
+        });
     }
 
     /**
@@ -65,17 +69,13 @@ class APITests {
     void singleUserNotFoundApiTest(TestData td, APIRequests api) throws IOException {
         Response<UserData> response = sendRequest(td.getUser_id(), api);
         UserData userData = response.body();
-        assertAll(
-                "response check",
-                () -> assertEquals(
-                        response.code(),
-                        td.getResponse_status()
-                ),
-                () -> assertNull(
-                        userData,
-                        "Сервер не ответил или произошла ошибка автотестов " + response.code()
-                )
-        );
+        SoftAssertions.assertSoftly(softly -> {
+            softly.assertThat(response.code())
+                    .isEqualTo(td.getResponse_status());
+            softly.assertThat(userData)
+                    .as("Сервер не ответил или произошла ошибка автотестов " + response.code())
+                    .isNull();
+        });
     }
 
     /**
@@ -86,11 +86,14 @@ class APITests {
      * @return the response
      * @throws IOException the io exception
      */
-    @Step("Задать текст {text} на поиск")
     Response<UserData> sendRequest(String id, APIRequests api) throws IOException {
         log.info("запрос одиночного пользователя " + Thread.currentThread().getName());
         Call<UserData> callSync = api.getUserData(id);
         return callSync.execute();
+    }
+
+    void diff(String expected, String real) {
+        JsonPatchMatcher.jsonEquals(expected).matches(real);
     }
 
 }

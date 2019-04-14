@@ -81,9 +81,13 @@ dependencies {
     
     // allure
     implementation 'io.qameta.allure:allure-selenide:2.+'
+    implementation 'io.qameta.allure:allure-assertj:2.+'
+    implementation 'io.qameta.allure:allure-jsonunit:2.+'
+    implementation 'io.qameta.allure:allure-attachments:2.+'
+    implementation 'io.qameta.allure:allure-okhttp3:2.+'
     
     // assert
-    testImplementation 'org.assertj:assertj-core:3.11.1'
+    implementation 'org.assertj:assertj-core:3.11.1'
     
     // test video
     testImplementation 'com.automation-remarks:video-recorder-junit5:1.+'
