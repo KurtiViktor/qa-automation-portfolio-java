@@ -8,7 +8,7 @@
 
 plugins {
     id 'java'
-    id 'io.qameta.allure' version '2.5'
+    id "io.qameta.allure" version "2.7.0"
     id 'io.franzbecker.gradle-lombok' version '1.14'
     id 'jacoco'
 }
@@ -128,11 +128,13 @@ test {
 
 allure {
     autoconfigure = true
-    version = '2.8.0'
-    downloadLink = 'https://github.com/allure-framework/allure2/releases/download/2.8.0/allure-2.8.0.zip'
+    version = '2.10.0'
+    downloadLink = 'https://dl.bintray.com/qameta/maven/io/qameta/allure/allure-commandline/2.10.0/allure-commandline-2.10.0.zip'
+    resultsDir = file("$buildDir/allure-results")
+    reportDir = file("$buildDir/allure-report")
 
     useJUnit5 {
-        version = '2.8.0'
+        version = '2.10.0'
     }
 }
 

@@ -6,6 +6,8 @@ import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
+import java.util.concurrent.TimeUnit;
+
 /**
  * Класс общей конфигурации параметров библиотеки Retrofit.
  */
@@ -30,6 +32,8 @@ public class RetrofitAdapter {
     private OkHttpClient getClient() {
         return new OkHttpClient.Builder()
                 .addInterceptor(new AllureOkHttp3())
+                .connectTimeout(100, TimeUnit.SECONDS)
+                .readTimeout(30, TimeUnit.SECONDS)
                 .build();
     }
 

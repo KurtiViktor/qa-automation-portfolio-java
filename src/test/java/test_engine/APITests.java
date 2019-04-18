@@ -50,7 +50,7 @@ class APITests {
         assertThat(userData)
                 .as("Сервер не ответил или произошла ошибка автотестов " + response.code())
                 .isNotNull();
-        diff("{af:1, bt:2}", "{b:2, a:1}");
+        diff("{\"af\":1, \"bt\":2}", "{\"b\":2, \"a\":1}");
         SoftAssertions.assertSoftly(softly -> {
             softly.assertThat(response.code()).isEqualTo(td.getResponse_status());
             softly.assertThat(userData.getData()).isEqualTo(td.getResponse().getData());
@@ -76,6 +76,7 @@ class APITests {
                     .as("Сервер не ответил или произошла ошибка автотестов " + response.code())
                     .isNull();
         });
+        diff("{\"af\":1, \"bt\":2}", "{\"b\":2, \"a\":1}");
     }
 
     /**
