@@ -1,48 +1,51 @@
-[![Build Status](https://travis-ci.org/KurtiViktor/qa_portfolio-java-test_engine.svg?branch=master)](https://travis-ci.org/KurtiViktor/qa_portfolio-java-test_engine)
+# SDET Portfolio: Java Test Engine
+
 [![codecov](https://codecov.io/gh/KurtiViktor/qa_portfolio-java-test_engine/branch/master/graph/badge.svg)](https://codecov.io/gh/KurtiViktor/qa_portfolio-java-test_engine)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-# 1. Краткое описание
-Технологическое демо по автоматизации тестирования.
-В демо предлагается автоматизация тестирования графического интерфейса, api и базы данных приложения. 
-# 2. Ключевой функционал
-* Параллельный запуск из коробки c Junit 5
-## 2.1 Web:
-* Вся мощь библиотеки Selenide
-* Подстветка веб-элементов при локальном запуске
-* Видео запись выполнения тестов
-* Allure-отчет в качестве репортинга
-* Планируется добавить поддержку influxdb + grafana для более наглядного репортинга 
-## 2.2 API:
-* Работа с api через Retrofit
-* Загрузка тестовых данных из json
-* Мокирование функционала с помощью Wiremock
-## 2.3 DB:
-* Работа с бд с помощью ORM через JPA\Hibernate 
 
-# 3. Как работать с проектом
-1. Скачать целиком код проекта.
-2. Установить параметры запуска:
-* concurrentExec -- true/false -- запускать ли тесты параллельно.
-* tags -- api, web, db, ext -- теги для запуска через запятую, по умолчанию все.   
-3. Выполнить для запуска тестов:
-    > ./gradlew test -Ptags=your_value -PconcurentExec=your_value
-4. Выполнить для генерации аллюр отчета:
-    > ./gradlew copyAllureCategories allureReport
-5. Выполнить для генерации javadoc проекта:
-    > ./gradlew javadoc
-# 4. Структура
-* test_engine.api - Пакет, предназначенный для работы с api тестируемого приложения.
-* test_engine.db - Пакет, предназначенный для работы с базой данных тестируемого приложения.
-* test_engine.out - Пакет, предназначенный для работы с внешними активностями движка автотестов.
-* test_engine.ext - Пакет, предназначенный для работы с классами расширений и кастомизации, используемых библиотек. Если класс не попадает в пакеты api, out, db, то он попадает сюда.
+## Overview
+Welcome to a cutting-edge demo showcasing the automation of testing for graphical user interfaces, APIs, and application databases. Designed for testers and developers alike, this project leverages modern technologies to streamline and enhance testing processes.
 
-Для более детального описания смотрите javadoc.
+## Key Features
 
-# 5. Технологический стэк
-* система автоматической сборки: gradle 5.x
-* java 8: guava, lombok, owner, gson
-* web: Selenide, video-recorder
-* api: Retrofit 2, Wiremock
-* db: Hibernate 5, JPA, SQLITE 3
-* test: Junit 5, assertj
-* report: slf4j, log4j2, allure 2.x
+- **Parallel Execution**: Out-of-the-box support with Junit 5 for enhanced testing efficiency.
+### Web Testing:
+  - Harness the full potential of the Selenide library for robust web testing.
+  - Element highlighting during local runs for improved test clarity.
+  - Test execution video recording.
+  - Comprehensive Allure reports for detailed insights.
+  - Future plans include influxdb + grafana integration for advanced reporting.
+### API Testing:
+  - Seamless API interactions through Retrofit.
+  - Test data management via JSON.
+  - Functional mocking with Wiremock for reliable testing scenarios.
+### Database Testing:
+  - ORM-based database interactions with JPA/Hibernate for streamlined data testing.
+
+## Getting Started
+
+1. **Project Setup**: Clone the repository to get started with the test engine.
+2. **Configuration**:
+   - `concurrentExec`: Boolean value to enable/disable parallel test execution.
+   - `tags`: Specify tags (`api`, `web`, `db`, `ext`) for selective test execution.
+3. **Commands**:
+   - Execute tests: `./gradlew test -Ptags=<tag_value> -PconcurrentExec=<boolean>`
+   - Generate Allure reports: `./gradlew copyAllureCategories allureReport`
+   - Generate Javadoc: `./gradlew javadoc`
+
+## Project Structure
+
+- `test_engine.api`: Package dedicated to API testing.
+- `test_engine.db`: Package for database testing.
+- `test_engine.ext`: Package for extensions and custom library usage.
+- Additional details are available in the Javadoc documentation.
+
+## Technology Stack
+
+- **Build System**: Gradle 5.x
+- **Programming Language**: Java 8 (Guava, Lombok, Owner, Gson)
+- **Web Testing**: Selenide, video-recorder
+- **API Testing**: Retrofit 2, Wiremock
+- **Database**: Hibernate 5, JPA, SQLITE 3
+- **Testing**: Junit 5, assertj
+- **Reporting**: SLF4J, Log4j2, Allure 2.x
